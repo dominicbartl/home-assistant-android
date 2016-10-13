@@ -12,10 +12,13 @@ public class Device extends RealmObject {
     private String protocol;
     private int repeats;
 
+    // Device
+    private String id;
+    private String unit;
+    private String state;
+
     public Device() {
     }
-
-    private DeviceMessage message;
 
     public String getUuid() {
         return uuid;
@@ -57,11 +60,4 @@ public class Device extends RealmObject {
         this.repeats = repeats;
     }
 
-    public DeviceMessage getMessage() {
-        return message;
-    }
-
-    public void setMessage(DeviceMessage message) {
-        this.message = message;
-    }
 }

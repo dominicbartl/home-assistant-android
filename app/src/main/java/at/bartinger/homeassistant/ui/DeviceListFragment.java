@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import at.bartinger.homeassistant.R;
 import at.bartinger.homeassistant.model.Device;
 import at.bartinger.homeassistant.repository.DeviceRepository;
+import at.bartinger.homeassistant.service.ApiService;
 import at.bartinger.homeassistant.service.SocketService;
 
 public class DeviceListFragment extends Fragment implements SocketService.Listener, DeviceAdapter.Listener {
@@ -45,19 +46,19 @@ public class DeviceListFragment extends Fragment implements SocketService.Listen
 
         repository = new DeviceRepository();
 
-        try {
-            service = new SocketService("http://10.0.2.2:3000", this);
-            service.connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        ApiService.connectSocket(this);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ApiService.disconnect();
     }
 
     @Override
     public void onDeviceReceived(Device device) {
-        adapter.add(device);
-        adapter.notifyItemInserted(adapter.getItemCount() - 1);
+        adapter.add(0, device);
+        adapter.notifyItemInserted(0);
     }
 
     @Override

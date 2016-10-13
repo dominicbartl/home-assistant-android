@@ -23,8 +23,7 @@ public class SocketService {
     private Socket socket;
     private Listener listener;
 
-    public SocketService(String url, final Listener listener) throws URISyntaxException {
-        this.listener = listener;
+    public SocketService(String url) throws URISyntaxException {
         gson = new GsonBuilder().create();
         socket = IO.socket(url);
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
@@ -37,7 +36,7 @@ public class SocketService {
             @Override
             public void call(Object... args) {
                 Log.d(SocketService.class.getName(), "Got a message");
-                if (args.length > 0 && args[0] instanceof JSONObject) {
+                if (listener != null && args.length > 0 && args[0] instanceof JSONObject) {
                     JSONObject device = (JSONObject) args[0];
                     final Device device1 = gson.fromJson(device.toString(), Device.class);
                     handler.post(new Runnable() {
@@ -69,8 +68,14 @@ public class SocketService {
         });
     }
 
-    public void connect() {
+    public void connect(Listener listener) {
+        this.listener = listener;
         socket.connect();
+    }
+
+    public void disconnect() {
+        this.listener = null;
+        socket.disconnect();
     }
 
     public interface Listener {
