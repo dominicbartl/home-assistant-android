@@ -11,6 +11,7 @@ import at.bartinger.homeassistant.model.Device;
 import at.bartinger.homeassistant.repository.DeviceRepository;
 import at.bartinger.homeassistant.service.ApiService;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,18 +20,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
         try {
             ApiService.init(this);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-        DeviceRepository repository = new DeviceRepository();
-        List<Device> list = repository.list();
-
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, DeviceListFragment.newInstance())
+                .replace(android.R.id.content, DevicesFragment.newInstance())
                 .commit();
 
     }

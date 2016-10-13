@@ -19,7 +19,6 @@ import at.bartinger.homeassistant.service.SocketService;
 
 public class DeviceListFragment extends Fragment implements SocketService.Listener, DeviceAdapter.Listener {
 
-    private SocketService service;
     private DeviceAdapter adapter;
 
     private DeviceRepository repository;
