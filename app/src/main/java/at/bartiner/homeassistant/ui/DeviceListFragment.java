@@ -13,12 +13,15 @@ import java.net.URISyntaxException;
 
 import at.bartiner.homeassistant.R;
 import at.bartiner.homeassistant.model.Device;
+import at.bartiner.homeassistant.repository.DeviceRepository;
 import at.bartiner.homeassistant.service.SocketService;
 
-public class DeviceListFragment extends Fragment implements SocketService.Listener {
+public class DeviceListFragment extends Fragment implements SocketService.Listener, DeviceAdapter.Listener {
 
     private SocketService service;
     private DeviceAdapter adapter;
+
+    private DeviceRepository repository;
 
     public static DeviceListFragment newInstance() {
         Bundle args = new Bundle();
@@ -38,7 +41,9 @@ public class DeviceListFragment extends Fragment implements SocketService.Listen
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter = new DeviceAdapter());
+        recyclerView.setAdapter(adapter = new DeviceAdapter(this));
+
+        repository = new DeviceRepository();
 
         try {
             service = new SocketService("http://10.0.2.2:3000", this);
@@ -53,5 +58,18 @@ public class DeviceListFragment extends Fragment implements SocketService.Listen
     public void onDeviceReceived(Device device) {
         adapter.add(device);
         adapter.notifyItemInserted(adapter.getItemCount() - 1);
+    }
+
+    @Override
+    public void onDeviceClick(final Device device) {
+        DeviceNameDialog nameDialog = DeviceNameDialog.newInstance();
+        nameDialog.setListener(new DeviceNameDialog.Listener() {
+            @Override
+            public void onNameEntered(String name) {
+                device.setName(name);
+                repository.create(device);
+            }
+        });
+        nameDialog.show(getChildFragmentManager(), "device_name");
     }
 }

@@ -1,11 +1,19 @@
 package at.bartiner.homeassistant.model;
 
-public class Device {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class Device extends RealmObject {
+
+    @PrimaryKey
     private String uuid;
+    private String name;
     private String origin;
     private String protocol;
     private int repeats;
+
+    public Device() {
+    }
 
     private DeviceMessage message;
 
@@ -15,6 +23,14 @@ public class Device {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getOrigin() {

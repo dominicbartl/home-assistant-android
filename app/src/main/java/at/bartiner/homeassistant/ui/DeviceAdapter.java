@@ -11,7 +11,13 @@ import at.bartiner.homeassistant.model.Device;
 import at.bartiner.homeassistant.ui.core.GenericArrayAdapter;
 
 
-public class DeviceAdapter extends GenericArrayAdapter<DeviceAdapter.ViewHolder, Device> {
+class DeviceAdapter extends GenericArrayAdapter<DeviceAdapter.ViewHolder, Device> {
+
+    private Listener listener;
+
+    DeviceAdapter(Listener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -23,13 +29,14 @@ public class DeviceAdapter extends GenericArrayAdapter<DeviceAdapter.ViewHolder,
         holder.bind(getItem(position));
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView text1;
         private TextView text2;
 
         ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             text1 = (TextView) itemView.findViewById(android.R.id.text1);
             text2 = (TextView) itemView.findViewById(android.R.id.text2);
         }
@@ -38,6 +45,17 @@ public class DeviceAdapter extends GenericArrayAdapter<DeviceAdapter.ViewHolder,
             text1.setText(device.getProtocol());
             text2.setText(device.getUuid());
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onDeviceClick(getItem(getAdapterPosition()));
+        }
+    }
+
+    interface Listener {
+
+        void onDeviceClick(Device device);
+
     }
 
 }
