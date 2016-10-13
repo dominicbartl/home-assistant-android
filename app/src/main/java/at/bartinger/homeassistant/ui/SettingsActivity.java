@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui;
+package at.bartinger.homeassistant.ui;
 
 
 import android.annotation.TargetApi;
@@ -22,8 +22,8 @@ import android.view.MenuItem;
 
 import java.util.List;
 
-import at.bartiner.homeassistant.R;
-import at.bartiner.homeassistant.ui.core.AppCompatPreferenceActivity;
+import at.bartinger.homeassistant.R;
+import at.bartinger.homeassistant.ui.core.AppCompatPreferenceActivity;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On

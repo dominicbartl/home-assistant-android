@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.service;
+package at.bartinger.homeassistant.service;
 
 import android.os.Handler;
 import android.util.Log;
@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
-import at.bartiner.homeassistant.model.Device;
+import at.bartinger.homeassistant.model.Device;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;

@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui;
+package at.bartinger.homeassistant.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import at.bartiner.homeassistant.R;
-import at.bartiner.homeassistant.model.Device;
-import at.bartiner.homeassistant.ui.core.GenericArrayAdapter;
+import at.bartinger.homeassistant.R;
+import at.bartinger.homeassistant.model.Device;
+import at.bartinger.homeassistant.ui.core.GenericArrayAdapter;
 
 
 class DeviceAdapter extends GenericArrayAdapter<DeviceAdapter.ViewHolder, Device> {

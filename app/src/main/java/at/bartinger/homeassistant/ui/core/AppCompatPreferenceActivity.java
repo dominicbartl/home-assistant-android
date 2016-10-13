@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui.core;
+package at.bartinger.homeassistant.ui.core;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.model;
+package at.bartinger.homeassistant.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

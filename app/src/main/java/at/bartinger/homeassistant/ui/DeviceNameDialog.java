@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui;
+package at.bartinger.homeassistant.ui;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-import at.bartiner.homeassistant.R;
+import at.bartinger.homeassistant.R;
 
 public class DeviceNameDialog extends DialogFragment {
 

@@ -1,8 +1,8 @@
-package at.bartiner.homeassistant.repository;
+package at.bartinger.homeassistant.repository;
 
 import java.util.List;
 
-import at.bartiner.homeassistant.model.Device;
+import at.bartinger.homeassistant.model.Device;
 import io.realm.Realm;
 
 public class DeviceRepository {

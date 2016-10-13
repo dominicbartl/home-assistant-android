@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui.core;
+package at.bartinger.homeassistant.ui.core;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;

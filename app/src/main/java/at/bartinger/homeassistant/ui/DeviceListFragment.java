@@ -1,4 +1,4 @@
-package at.bartiner.homeassistant.ui;
+package at.bartinger.homeassistant.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 import java.net.URISyntaxException;
 
-import at.bartiner.homeassistant.R;
-import at.bartiner.homeassistant.model.Device;
-import at.bartiner.homeassistant.repository.DeviceRepository;
-import at.bartiner.homeassistant.service.SocketService;
+import at.bartinger.homeassistant.R;
+import at.bartinger.homeassistant.model.Device;
+import at.bartinger.homeassistant.repository.DeviceRepository;
+import at.bartinger.homeassistant.service.SocketService;
 
 public class DeviceListFragment extends Fragment implements SocketService.Listener, DeviceAdapter.Listener {
 
