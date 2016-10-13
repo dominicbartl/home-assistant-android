@@ -13,7 +13,7 @@ import at.bartinger.homeassistant.service.ApiService;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DevicesFragment.Listener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,4 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onAddClick() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("add")
+                .replace(android.R.id.content, DeviceListFragment.newInstance())
+                .commit();
+    }
 }

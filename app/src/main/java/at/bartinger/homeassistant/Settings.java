@@ -22,7 +22,7 @@ public class Settings {
     }
 
     public String getServerURL() {
-        return prefs.getString("server_url", "http://10.0.2.2:3000");
+        return prefs.getString("server_url", "http://192.168.1.127:3000");
     }
 
     public void setServerURL(String url) {
