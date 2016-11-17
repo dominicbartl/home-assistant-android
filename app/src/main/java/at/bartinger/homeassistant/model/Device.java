@@ -6,6 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Device extends RealmObject {
 
     @PrimaryKey
+    private String id;
     private String uuid;
     private String name;
     private String origin;
@@ -13,8 +14,8 @@ public class Device extends RealmObject {
     private int repeats;
 
     // Device
-    private String id;
-    private String unit;
+    private String deviceId;
+    private String deviceUnit;
     private String state;
 
     public Device() {
@@ -60,4 +61,35 @@ public class Device extends RealmObject {
         this.repeats = repeats;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getDeviceUnit() {
+        return deviceUnit;
+    }
+
+    public void setDeviceUnit(String deviceUnit) {
+        this.deviceUnit = deviceUnit;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }

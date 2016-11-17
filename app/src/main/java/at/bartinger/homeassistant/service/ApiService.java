@@ -2,10 +2,17 @@ package at.bartinger.homeassistant.service;
 
 import android.content.Context;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.net.URISyntaxException;
 
 import at.bartinger.homeassistant.Settings;
+import io.socket.client.IO;
+import io.socket.client.Socket;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
@@ -14,9 +21,15 @@ public class ApiService {
 
     public static void init(Context context) throws URISyntaxException {
         String url = Settings.getInstance(context).getServerURL();
-        socketService = new SocketService(url);
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create();
+
+        Socket socket = IO.socket(url);
+        socketService = new SocketService(socket, gson);
         retrofit = new Retrofit.Builder()
                 .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 

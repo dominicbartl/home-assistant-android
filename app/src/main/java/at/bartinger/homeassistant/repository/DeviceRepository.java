@@ -1,28 +1,20 @@
 package at.bartinger.homeassistant.repository;
 
-import java.util.List;
-
 import at.bartinger.homeassistant.model.Device;
-import io.realm.Realm;
 
-public class DeviceRepository {
+public class DeviceRepository extends BaseRepository<Device> {
 
-    private Realm realm;
+    private static DeviceRepository instance;
 
     public DeviceRepository() {
-        // Obtain a Realm instance
-        this.realm = Realm.getDefaultInstance();
+        super(Device.class);
     }
 
-    public Device create(Device device) {
-        realm.beginTransaction();
-        Device model = realm.copyToRealm(device);
-        realm.commitTransaction();
-        return model;
-    }
-
-    public List<Device> list() {
-        return realm.where(Device.class).findAll();
+    public static DeviceRepository getInstance() {
+        if (instance == null) {
+            instance = new DeviceRepository();
+        }
+        return instance;
     }
 
 }

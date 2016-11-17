@@ -74,4 +74,6 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="device_name">Device name</string>
     <string name="no_devices_configured">No devices configured</string>
+    <string name="off">Off</string>
+    <string name="on">On</string>
 </resources>

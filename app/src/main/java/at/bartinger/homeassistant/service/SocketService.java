@@ -3,6 +3,7 @@ package at.bartinger.homeassistant.service;
 import android.os.Handler;
 import android.util.Log;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,9 +24,9 @@ public class SocketService {
     private Socket socket;
     private Listener listener;
 
-    public SocketService(String url) throws URISyntaxException {
-        gson = new GsonBuilder().create();
-        socket = IO.socket(url);
+    public SocketService(Socket socket, final Gson gson) throws URISyntaxException {
+        this.gson = gson;
+        this.socket = socket;
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -42,7 +43,9 @@ public class SocketService {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            listener.onDeviceReceived(device1);
+                            if (listener != null) {
+                                listener.onDeviceReceived(device1);
+                            }
                         }
                     });
                 }
