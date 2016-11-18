@@ -95,7 +95,17 @@ public class DevicesFragment extends Fragment implements DeviceGridAdapter.Liste
 
     @Override
     public void onDeviceActionClick(Device device, String action) {
+        service.controlDevice(device.getId(), action).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     public interface Listener {
